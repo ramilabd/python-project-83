@@ -16,3 +16,12 @@ build:
 
 render-start:
 	gunicorn -w 5 -b 0.0.0.0:$(PORT) page_analyzer:app
+
+build-css:
+	npm run build:css
+
+install:
+	uv sync
+	npm install
+
+build: install build-css
