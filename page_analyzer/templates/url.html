@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Сайт: {{ url.name }} — Анализатор страниц{% endblock %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto px-4 pb-12">
+  <h1 class="text-4xl font-medium text-gray-900 mb-6">Сайт: {{ url.name }}</h1>
+
+  <table data-test="url" class="w-full border-collapse mb-10">
+    <tbody>
+      <tr class="border-b">
+        <td class="px-4 py-3 font-medium w-40">ID</td>
+        <td class="px-4 py-3">{{ url.id }}</td>
+      </tr>
+      <tr class="border-b bg-gray-100">
+        <td class="px-4 py-3 font-medium">Имя</td>
+        <td class="px-4 py-3">{{ url.name }}</td>
+      </tr>
+      <tr class="border-b">
+        <td class="px-4 py-3 font-medium">Дата создания</td>
+        <td class="px-4 py-3">{{ url.created_at }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="text-2xl font-medium text-gray-900 mb-4">Проверки</h2>
+  <form action="#" method="post" class="mb-6">
+    <button type="submit"
+            class="rounded-md bg-blue-600 px-6 py-2 text-white font-medium hover:bg-blue-700">
+      Запустить проверку
+    </button>
+  </form>
+
+  <table class="w-full border-collapse">
+    <thead>
+      <tr class="border-b">
+        <th class="text-left px-4 py-3 font-medium text-gray-700">ID</th>
+        <th class="text-left px-4 py-3 font-medium text-gray-700">Код ответа</th>
+        <th class="text-left px-4 py-3 font-medium text-gray-700">h1</th>
+        <th class="text-left px-4 py-3 font-medium text-gray-700">title</th>
+        <th class="text-left px-4 py-3 font-medium text-gray-700">description</th>
+        <th class="text-left px-4 py-3 font-medium text-gray-700">Дата создания</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+{% endblock %}

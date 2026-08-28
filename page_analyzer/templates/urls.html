@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Сайты — Анализатор страниц{% endblock %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto px-4 pb-12">
+  <h1 class="text-4xl font-medium text-gray-900 mb-6">Сайты</h1>
+
+  <table data-test="urls" class="w-full border-collapse">
+    <thead>
+      <tr class="border-b">
+        <th class="text-left px-4 py-3 font-medium text-gray-700">ID</th>
+        <th class="text-left px-4 py-3 font-medium text-gray-700">Имя</th>
+        <th class="text-left px-4 py-3 font-medium text-gray-700">Последняя проверка</th>
+        <th class="text-left px-4 py-3 font-medium text-gray-700">Код ответа</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for url in urls %}
+      <tr class="border-b">
+        <td class="px-4 py-3">{{ url.id }}</td>
+        <td class="px-4 py-3">
+          <a href="{{ url_for('show_url', id=url.id) }}" class="text-blue-600 hover:underline">{{ url.name }}</a>
+        </td>
+        <td class="px-4 py-3"></td>
+        <td class="px-4 py-3"></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
