@@ -22,8 +22,8 @@
         <td class="px-4 py-3">
           <a href="{{ url_for('show_url', id=url.id) }}" class="text-blue-600 hover:underline">{{ url.name }}</a>
         </td>
-        <td class="px-4 py-3"></td>
-        <td class="px-4 py-3"></td>
+        <td class="px-4 py-3">{{ url.last_check_created_at or '' }}</td>
+        <td class="px-4 py-3">{{ url.last_check_status_code or '' }}</td>
       </tr>
       {% endfor %}
     </tbody>
