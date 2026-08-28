@@ -44,4 +44,20 @@ def show_url(id):
     url = repository.find_url_by_id(id)
     if url is None:
         abort(404)
-    return render_template('url.html', url=url)
+    checks = repository.get_checks(id)
+    return render_template('url.html', url=url, checks=checks)
+
+
+@app.route('/urls/<int:id>/checks', methods=['POST'])
+def create_check(id):
+    url = repository.find_url_by_id(id)
+    if url is None:
+        abort(404)
+
+    try:
+        repository.create_check(id)
+        flash('Страница успешно проверена', 'success')
+    except Exception:
+        flash('Произошла ошибка при проверке', 'danger')
+
+    return redirect(url_for('show_url', id=id))
