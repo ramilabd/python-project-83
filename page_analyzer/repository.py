@@ -12,7 +12,7 @@ def get_connection():
     return psycopg.connect(DATABASE_URL)
 
 
-ddef get_all_urls():
+def get_all_urls():
     with get_connection() as conn, conn.cursor(row_factory=dict_row) as cur:
         cur.execute('''
             SELECT urls.id,
