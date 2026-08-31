@@ -9,6 +9,16 @@ app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY')
 
 
+def truncate_text(text, length=200):
+    text = text or ''
+    if len(text) > length:
+        return text[:length] + '...'
+    return text
+
+
+app.jinja_env.filters['truncate_text'] = truncate_text
+
+
 @app.route('/')
 def index():
     return render_template('index.html')

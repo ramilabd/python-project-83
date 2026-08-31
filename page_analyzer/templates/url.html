@@ -47,9 +47,9 @@
       <tr class="border-b">
         <td class="px-4 py-3">{{ check.id }}</td>
         <td class="px-4 py-3">{{ check.status_code or '' }}</td>
-        <td class="px-4 py-3">{{ check.h1 or '' }}</td>
-        <td class="px-4 py-3">{{ check.title or '' }}</td>
-        <td class="px-4 py-3">{{ check.description or '' }}</td>
+        <td class="px-4 py-3">{{ check.h1 | truncate_text }}</td>
+        <td class="px-4 py-3">{{ check.title | truncate_text }}</td>
+        <td class="px-4 py-3">{{ check.description | truncate_text }}</td>
         <td class="px-4 py-3">{{ check.created_at }}</td>
       </tr>
       {% endfor %}
