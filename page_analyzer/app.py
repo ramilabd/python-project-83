@@ -1,8 +1,9 @@
 import os
 
+import requests
 from flask import Flask, abort, flash, redirect, render_template, request, url_for
 
-from page_analyzer import repository, url_utils
+from page_analyzer import page_checker, repository, url_utils
 
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY')
@@ -55,9 +56,10 @@ def create_check(id):
         abort(404)
 
     try:
-        repository.create_check(id)
+        check_data = page_checker.check_url(url['name'])
+        repository.create_check(id, **check_data)
         flash('Страница успешно проверена', 'success')
-    except Exception:
+    except requests.RequestException:
         flash('Произошла ошибка при проверке', 'danger')
 
     return redirect(url_for('show_url', id=id))

@@ -53,11 +53,21 @@ def save_url(name):
         return new_id
 
 
-def create_check(url_id):
+def create_check(url_id, status_code, h1, title, description):
     with get_connection() as conn, conn.cursor() as cur:
         cur.execute(
-            'INSERT INTO url_checks (url_id) VALUES (%(url_id)s) RETURNING id',
-            {'url_id': url_id}
+            '''
+            INSERT INTO url_checks (url_id, status_code, h1, title, description)
+            VALUES (%(url_id)s, %(status_code)s, %(h1)s, %(title)s, %(description)s)
+            RETURNING id
+            ''',
+            {
+                'url_id': url_id,
+                'status_code': status_code,
+                'h1': h1,
+                'title': title,
+                'description': description,
+            }
         )
         new_id = cur.fetchone()[0]
         conn.commit()
