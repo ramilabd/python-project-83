@@ -1,6 +1,7 @@
 # Анализатор страниц (Python Flask)
 
 [![hexlet-check](https://github.com/ramilabd/python-project-83/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/ramilabd/python-project-83/actions)
+[![Quality gate status](https://sonarcloud.io/api/project_badges/measure?project=ramilabd_python-project-83&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ramilabd_python-project-83)
 
 Веб-приложение, которое проверяет сайты на SEO-пригодность: добавляет URL, делает по нему HTTP-запрос и извлекает `status_code`, `h1`, `title` и `meta description`.
 
