@@ -2,27 +2,56 @@
 
 [![hexlet-check](https://github.com/ramilabd/python-project-83/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/ramilabd/python-project-83/actions)
 
-Создадите полноценное веб-приложение, которое выполняет запросы по сети и сохраняет данные в базу. Настроите CI и выполните деплой.
+Веб-приложение, которое проверяет сайты на SEO-пригодность: добавляет URL, делает по нему HTTP-запрос и извлекает `status_code`, `h1`, `title` и `meta description`.
 
-Учебный проект Хекслета: https://ru.hexlet.io/programs/python
-Как это должно работать: https://files.hexlet.app/a/vfyo3a
+**Демо:** https://page-analyzer-hx3e.onrender.com/
+
+Курс Хекслета: [Python-разработчик](https://ru.hexlet.io/programs/python)
 
 ## Стек
 
-- Python
+Python, Flask, PostgreSQL (psycopg3), Gunicorn, Tailwind CSS, requests, BeautifulSoup4
 
 ## Установка
 
-<!-- Опишите установку: клонирование, зависимости, переменные окружения -->
+Понадобятся: Python 3.14+, PostgreSQL, `uv` и `npm`.
 
 ```bash
 git clone https://github.com/ramilabd/python-project-83.git
 cd python-project-83
+
+# Установка Python- и JS-зависимостей (uv sync + npm install)
+make install
+```
+
+Создайте файл `.env` в корне проекта:
+
+```SECRET_KEY=любая_случайная_строка```
+
+```python
+python3 -c "import secrets; print(secrets.token_hex(16))"
+```
+
+Создайте таблицы в базе данных:
+
+```DATABASE_URL=postgresql://user:password@localhost:5432/page_analyzer```
+
+```bash
+psql -a -d $DATABASE_URL -f database.sql
 ```
 
 ## Использование
 
-<!-- Добавьте примеры запуска и запись asciinema — именно это смотрит работодатель -->
+```bash
+# Запуск в режиме разработки (Flask debug-сервер)
+make dev
+
+# Сборка CSS + запуск через gunicorn (как в production)
+make build
+make start
+```
+
+Приложение будет доступно на http://localhost:8000 (или на порту из `PORT`).
 
 ---
 
@@ -35,4 +64,6 @@ cd python-project-83
 
 ## О Хекслете
 
-[Хекслет](https://ru.hexlet.io/) — школа программирования: авторские программы обучения с практикой, поддержкой наставников и реальными проектами, которые остаются в резюме. Этот репозиторий — один из таких проектов.
+[Хекслет](https://ru.hexlet.io/) — школа программирования: авторские программы обучения с практикой, поддержкой наставников и реальными проектами, которые остаются в резюме.
+
+Этот репозиторий третий проект курса Хекслета: [Python-разработчик](https://ru.hexlet.io/programs/python).
