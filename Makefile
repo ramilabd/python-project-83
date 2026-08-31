@@ -2,7 +2,7 @@ install:
 	uv sync
 	npm install
 
-setup: install
+setup: build
 	psql -a -d $(DATABASE_URL) -f database.sql
 
 dev:
